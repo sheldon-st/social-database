@@ -41,6 +41,7 @@ export default function PortalHome( ) {
             <p>This information is being fetched from a firestore database</p>
             
             <p>user with name, email, photo and if availbe phone number is automatically created in firestore on google auth sign in</p>
+            <p>this is handled in functions/ src</p>
 
      
     

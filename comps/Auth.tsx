@@ -43,7 +43,6 @@ function SignInScreen( { children }) {
         justifyContent: "center",
         flexDirection: "column",
         gridGap: 8,
-        
       }}
     >
       {loading && 
@@ -57,7 +56,8 @@ function SignInScreen( { children }) {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center", }} >
-            <h1>Pineapple Login</h1>
+            <h1>Welcome to the Pi Kappa Phi member portal</h1>
+            <h1>Description</h1>
             <p>Please sign-in:</p>
             <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
         </div>

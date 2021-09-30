@@ -3,8 +3,6 @@ import Auth from "../../comps/Auth";
 import PortalHome from "../../comps/PortalHome";
 
 // index.tsx
-import Head from "next/head";
-import Image from "next/image";
 import firebase from "../../firebase/clientApp";
 // Import the useAuthStateHook
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -27,10 +25,8 @@ const Portal = () => {
   }
 
   return (
-    <div >
-      <Auth >
-        <PortalHome />
-      </Auth>    
+    <div>
+      <p>this is the organization home</p>
     </div>
   );
 };

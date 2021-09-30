@@ -15,7 +15,6 @@ const clientCredentials = {
   measurementId: "G-647ES3ERZW"
 };
 
-
 if (!firebase.apps.length) {
   firebase.initializeApp(clientCredentials);
 }

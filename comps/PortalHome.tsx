@@ -1,5 +1,6 @@
 // index.tsx
 import Head from "next/head";
+import Link from "next/link";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import firebase from "../firebase/clientApp";
@@ -76,6 +77,9 @@ export default function PortalHome( ) {
 
       <h2>Information we need:</h2>
       <h2>(Form Here)</h2>
+      <Link  href="/portal/organization">
+          GO TO ORGANIZATION HOME
+        </Link>
 
       
     </div>

@@ -1,26 +1,35 @@
+import { link } from "fs";
 import Link from "next/link";
 import styles from "../styles/Navbar.module.css";
 
 const Navbar = () => {
   return (
-    <nav className={styles.container}>
+    <nav >
+      <div className={styles.container}> 
+      
       <h1 className={styles.logo}>
-        <Link href="/"> Pi Kappa Phi NEU</Link>
+        <Link href="/"> 
+        <img className={styles.logoImg} src="https://pikapp.org/wp-content/uploads/2018/06/PKP-NameStarShield-Centered-Logo-RGB.png"
+        ></img>
+        </Link>
       </h1>
       <div className={styles.links}>
         <Link  href="/about">
-          About
+          <h1 className={`${styles.link} ${styles.linkelara}`}>About</h1>
         </Link>
         <Link  href="/philanthropy">
-          Philanthropy
+          <h1 className={`${styles.link} ${styles.linkelara}`}>Philanthropy</h1>
         </Link>
         <Link  href="/contact">
-          Contact
+          <h1 className={`${styles.link} ${styles.linkelara}`}>Contact</h1>
         </Link>
         <Link href="/portal/">
-          Member Portal
+          <h1 className={`${styles.link} ${styles.linkelara}`}>Member Portal</h1>
         </Link>
       </div>
+      </div>
+
+      <hr className={styles.rounded}></hr>
     </nav>
   );
 };

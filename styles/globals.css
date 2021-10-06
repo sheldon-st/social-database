@@ -1,6 +1,8 @@
+@import url("https://use.typekit.net/nlp4hwr.css");
+
 html,
 body {
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  font-family: futura-pt, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
@@ -16,3 +18,11 @@ a {
 footer {
   margin-top: 5vh;
 }
+
+:root{
+  --main-blue: #005596;
+  --main-yellow: #E7A614;
+}
+
+
+

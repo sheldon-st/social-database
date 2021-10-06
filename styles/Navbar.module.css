@@ -3,6 +3,9 @@ You do not need to worry about .error {} colliding with any other `.css` or
 `.module.css` files!
 */
 
+@import url("https://use.typekit.net/nlp4hwr.css");
+
+
 .container {
   display: flex;
   justify-content: space-between;
@@ -11,8 +14,99 @@ You do not need to worry about .error {} colliding with any other `.css` or
 .links {
   display: flex;
   padding: 1.5em;
+  font-family: futura-pt-bold;
 
-  width: 30em;
+  width: 40em;
 
   justify-content: space-between;
+
+  text-decoration:violet;
+  color: var(--main-blue);
+
+}
+
+.logo {
+  cursor: pointer;
+}
+
+.logoImg{
+  height: 3em;
+}
+
+.rounded {
+  border-top: 3.5px solid;
+  border-color: var(--main-blue);
+  color: var(--main-blue);
+  border-radius: 3.5px;
+}
+
+.link {
+  font-size: 18px;
+  position: relative;
+  white-space: nowrap;
+  height: min-content;
+  cursor: pointer;
+}
+
+.link::before,
+.link::after {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  top: 100%;
+  pointer-events: none;
+}
+
+.link::before {
+  content: "";
+  /* show by default */
+}
+
+.linkelara {
+  font-size: 1.375rem;
+}
+
+.linkelara::before {
+  transform-origin: 50% 100%;
+  transition: clip-path 0.3s, transform 0.3s cubic-bezier(0.2, 1, 0.8, 1);
+  clip-path: polygon(
+    0% 0%,
+    0% 100%,
+    0 100%,
+    0 0,
+    100% 0,
+    100% 100%,
+    0 100%,
+    0 100%,
+    100% 100%,
+    100% 0%
+  );
+}
+
+.linkelara:hover::before {
+  transform: translate3d(0, 2px, 0) scale3d(1.08, 3, 1);
+  clip-path: polygon(
+    0% 0%,
+    0% 100%,
+    50% 100%,
+    50% 0,
+    50% 0,
+    50% 100%,
+    50% 100%,
+    0 100%,
+    100% 100%,
+    100% 0%
+  );
+  color: var(--main-yellow);
+}
+
+.linkelara span {
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.2, 1, 0.8, 1);
+}
+
+.linkelara:hover span {
+  transform: translate3d(0, -2px, 0);
+  color: var(--main-yellow);
 }

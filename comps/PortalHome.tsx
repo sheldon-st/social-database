@@ -7,22 +7,54 @@ import firebase from "../firebase/clientApp";
 // Import the useAuthStateHook
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
+import { useState } from "react";
+import React from "react";
+
+import { useDocument } from "react-firebase-hooks/firestore";
+import { exit } from "process";
 
 
 export default function PortalHome( ) {
 
-   // Destructure user, loading, and error out of the hook.
-   const [user, loading, error] = useAuthState(firebase.auth());
-   // console.log the current user and loading status
-   console.log("Loading:", loading, "|", "Current user:", user);
+  const handleSubmit= (e) => {
+    e.preventDefault();
+    // ???
+  }
 
-  if (loading) {
+  const [name, setName] = useState('');
+const [email, setEmail] = useState('');
+const [phoneNumber, setPhoneNumber] = useState('');
+
+
+
+
+
+  const [authUser, userLoading, userError] = useAuthState(firebase.auth());
+  // console.log the current user and loading status
+  console.log("Loading:", userLoading, "|", "Current user:", authUser);
+
+  if (userLoading) {
     return <h6>Loading...</h6>;
   }
 
-  if (error) {
+  if (userError) {
     return null;
   }
+
+
+
+  const [user, loading, error] = useDocument(
+    firebase.firestore().doc('users/' + authUser.uid),
+    {
+      snapshotListenOptions: { includeMetadataChanges: true },
+    }
+
+  );
+
+
+
+
+
   
   return (
     <div
@@ -54,7 +86,7 @@ export default function PortalHome( ) {
         alignItems: "center",
       }}
     >
-      <img
+     {/*  <img
         style={{
           borderRadius: "50%",
           maxHeight: "48px",
@@ -62,8 +94,8 @@ export default function PortalHome( ) {
           marginRight: "8px",
         }}
         src={user.photoURL}
-      />
-      <div>
+      /> */}
+      {/* <div>
         <h4 style={{ marginBottom: 0 }}>{user.displayName}</h4>
         
       </div>
@@ -72,11 +104,64 @@ export default function PortalHome( ) {
       <h4>Name: {user.displayName}</h4>
       <h4>Email: {user.email}</h4>
       <h4>Phone: {user.phoneNumber} (NOT ALWAYS WORKING)</h4>
-      <h4>PhotoUrl: {user.photoURL}</h4>
-
-
+      <h4>PhotoUrl: {user.photoURL}</h4> */}
+</div>
       <h2>Information we need:</h2>
       <h2>(Form Here)</h2>
+
+      <div>
+      <div>
+      <p>
+        {error && <strong>Error: {JSON.stringify(error)}</strong>}
+        {loading && <span>Document: Loading...</span>}
+        {user && <span>
+          Document: {user.data().displayName}
+          <form onSubmit={e => {handleSubmit(e)}}>
+        <label>Name</label>
+        <br />
+        <input 
+          name='name' 
+          type='text'
+          value={name}
+          onChange={e => setName(e.target.value)}
+        />
+        <br/>
+        <label>Email</label>
+        <br />
+        <input 
+          name='userEmail' 
+          type='text' 
+        />
+        <br />
+        <label>Phone Number</label>
+        <br />
+        <input
+          name='pn' 
+          type='text'
+        />
+        <br/>
+        <input 
+          className='submitButton'
+          type='submit' 
+          value='Log Chore' 
+        />
+      </form>
+
+
+    
+          </span>}
+      </p>
+    </div>
+    </div>
+
+    
+
+      
+
+
+
+
+
       <Link  href="/portal/organization">
           GO TO ORGANIZATION HOME
         </Link>

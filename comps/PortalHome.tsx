@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import firebase from "../firebase/clientApp";
+import Link from "next/link";
 // Import the useAuthStateHook
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
@@ -76,8 +77,6 @@ const [phoneNumber, setPhoneNumber] = useState('');
             <p>user with name, email, photo and if availbe phone number is automatically created in firestore on google auth sign in</p>
             <p>this is handled in functions/ src</p>
 
-     
-    
       <div
       style={{
         maxWidth: "320px",
@@ -154,19 +153,13 @@ const [phoneNumber, setPhoneNumber] = useState('');
     </div>
     </div>
 
-    
-
-      
-
-
-
-
-
+      <Link  href="/portal/members">
+          GO TO MEMBERS DIRECTORY
+        </Link>
       <Link  href="/portal/organization">
           GO TO ORGANIZATION HOME
         </Link>
 
-      
     </div>
   );
 

@@ -9,6 +9,9 @@ export const createUserDocument = functions.auth.user().onCreate((user) => {
     .doc(user.uid)
     .set(JSON.parse(JSON.stringify(user)));
 });
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> added views for all members fetching from firestore

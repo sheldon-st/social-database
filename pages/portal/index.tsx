@@ -27,8 +27,8 @@ const Portal = () => {
   }
 
   return (
-    <div >
-      <Auth >
+    <div>
+      <Auth>
         <PortalHome />
       </Auth>    
     </div>

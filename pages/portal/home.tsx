@@ -32,6 +32,7 @@ export default function Members() {
     data.docs.forEach((user) => {
       saveUsers.push(user.data())
     });
+    console.log(saveUsers)
     setUsers(saveUsers);
   };
   useEffect(() => {
@@ -39,8 +40,9 @@ export default function Members() {
   }, []);
 
   return (
-    <div >
+    <div>
       <Auth >
+        <h1>Home</h1>
         <MembersPanel users={users}/>
       </Auth>
     </div>

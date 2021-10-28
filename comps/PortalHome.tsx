@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import firebase from "../firebase/clientApp";
-import Link from "next/link";
 // Import the useAuthStateHook
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";

@@ -13,15 +13,12 @@ import { useCollection } from "react-firebase-hooks/firestore";
 const Portal = () => {
   // Destructure user, loading, and error out of the hook.
   const [user, loading, error] = useAuthState(firebase.auth());
-  // console.log the current user and loading status
-  console.log("Loading:", loading, "|", "Current user:", user);
+  // console.log("Loading:", loading, "|", "Current user:", user);
 
   // display while loading
   if (loading) {
     return <h6>Loading...</h6>;
   }
-
-  // handle error
   if (error) {
     return null;
   }

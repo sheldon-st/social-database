@@ -6,8 +6,6 @@ import firebase from "../firebase/clientApp";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
 
-import PortalHome from "./PortalHome";
-
 const uiConfig = {
   // Redirect to / after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
   signInSuccessUrl: "/portal",
@@ -23,11 +21,9 @@ function SignInScreen( { children }) {
   if (loading) {
     return <h6>Loading...</h6>;
   }
-
   if (error) {
     return null;
   }
-
   
   return (
     <div

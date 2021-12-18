@@ -12,7 +12,6 @@ const Portal = () => {
   // Destructure user, loading, and error out of the hook.
   const [user, loading, error] = useAuthState(firebase.auth());
   // console.log the current user and loading status
-  console.log("Loading:", loading, "|", "Current user:", user);
 
   // display while loading
   if (loading) {

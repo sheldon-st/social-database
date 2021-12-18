@@ -9,13 +9,12 @@ import MembersPanel from "../../comps/Members";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { useEffect, useState } from "react";
-import db from "../../firebase/firestore";
+import db from "../../firebase/clientApp";
 
 
 export default function Members() {
   // Destructure user, loading, and error out of the hook.
   const [user, loading, error] = useAuthState(firebase.auth());
-  console.log("Loading:", loading, "|", "Current user:", user);
 
   if (loading) {
     return <h6>Loading...</h6>;

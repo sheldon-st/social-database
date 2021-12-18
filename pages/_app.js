@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }) {
   // Destructure user, loading, and error out of the hook.
   const [user, loading, error] = useAuthState(firebase.auth());
   // console.log the current user and loading status
-  console.log("Loading:", loading, "|", "Current user:", user);
+  // console.log("Loading:", loading, "|", "Current user:", user);
 
   if (loading) {
     return <h6>Loading...</h6>;

@@ -2,8 +2,8 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import firebase from "../firebase/clientApp";
-import db from "../firebase/firestore";
+import firebase from "../firebase/firebase";
+import db from "../firebase/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
 

@@ -3,7 +3,7 @@ import Auth from "../../comps/Auth";
 import PortalHome from "../../comps/PortalHome";
 
 // index.tsx
-import firebase from "../../firebase/clientApp";
+import firebase from "../../firebase/firebase";
 // Import the useAuthStateHook
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
@@ -12,7 +12,6 @@ const Portal = () => {
   // Destructure user, loading, and error out of the hook.
   const [user, loading, error] = useAuthState(firebase.auth());
   // console.log the current user and loading status
-  console.log("Loading:", loading, "|", "Current user:", user);
 
   // display while loading
   if (loading) {

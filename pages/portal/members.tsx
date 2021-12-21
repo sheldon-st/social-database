@@ -3,19 +3,18 @@ import Head from "next/head";
 import Image from "next/image";
 import Auth from "../../comps/Auth";
 import styles from "../styles/Home.module.css";
-import firebase from "../../firebase/clientApp";
+import firebase from "../../firebase/firebase";
 import Link from "next/link";
 import MembersPanel from "../../comps/Members";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { useEffect, useState } from "react";
-import db from "../../firebase/firestore";
+import db from "../../firebase/firebase";
 
 
 export default function Members() {
   // Destructure user, loading, and error out of the hook.
   const [user, loading, error] = useAuthState(firebase.auth());
-  console.log("Loading:", loading, "|", "Current user:", user);
 
   if (loading) {
     return <h6>Loading...</h6>;

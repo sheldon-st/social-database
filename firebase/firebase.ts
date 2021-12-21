@@ -1,10 +1,8 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
-import "firebase/database"
+import "firebase/database";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const clientCredentials = {
   apiKey: "AIzaSyCW8_gemoCSufMROS6aDlNBU3E4H1U0CzE",
   authDomain: "social-database-42f73.firebaseapp.com",

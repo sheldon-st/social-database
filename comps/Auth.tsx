@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import firebase from "../firebase/firebase";
-// Import the useAuthStateHook
+import db from "../firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
 
@@ -11,14 +11,17 @@ const uiConfig = {
   signInFlow: 'popup',
   // We will display GitHub as auth providers.
   signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
+  callbacks: {
+    signInSuccessWithAuthResult: function (authResult, redirectUrl) {
+      // db.collection("users").doc(userUid).set({
+    },
+  },
 };
 
 function SignInScreen( { children }) {
   const [user, loading, error] = useAuthState(firebase.auth());
   const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
-  // console.log the current user and loading status
   // console.log("Loading:", loading, "|", "Current user:", user);
-
   // Listen to the Firebase Auth state and set the local state.
   useEffect(() => {
     const unregisterAuthObserver = firebase.auth().onAuthStateChanged(user => {

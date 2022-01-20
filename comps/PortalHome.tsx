@@ -3,21 +3,17 @@ import Link from "next/link";
 import { useRouter } from 'next/router'
 import styles from "../styles/Home.module.css";
 import firebase from "../firebase/firebase";
+import db from "../firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useCollection } from "react-firebase-hooks/firestore";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
-import { useDocument } from "react-firebase-hooks/firestore";
-import { exit } from "process";
 
 import InfoForm from "../comps/InfoForm"
 
-export default function PortalHome() {
+export default function PortalHome({ userData }) {
 
+  console.log("---" + userData)
   const router = useRouter()
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
   const [user, loading, error] = useAuthState(firebase.auth());
   // console.log("Loading:", userLoading, "|", "Current user:", authUser);
 
@@ -28,10 +24,32 @@ export default function PortalHome() {
     return null;
   }
 
-  const handleSubmit = (e) => {
+  // update user data based on form info
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // ???
+    var form = {};
+    for (var i = 0; i < e.target.length; i++) {
+      var item = e.target[i];
+      form[item.name] = item.value;
+    }
+    // build new user object
+    let newUserData = {
+      displayName: form['displayName'],
+      email: form['email'],
+      phoneNumber: form['pn'],
+      major: form['major'],
+      onCampus: form['onCampus'],
+      previousEmployers: form['previousEmployers']
+    }
+
+    let newUser = JSON.parse(JSON.stringify(user));
+    newUser.userData = newUserData
+
+    await db.collection("users").doc(user.uid)
+      .set(JSON.parse(JSON.stringify(newUser)))
+      .then();
   };
+
   const logOut = async (e) => {
     e.preventDefault();
     await firebase.auth().signOut().then(() => {
@@ -40,11 +58,6 @@ export default function PortalHome() {
       console.log(error)
     });
   };
-
-  // const [user, loading, error] = useDocument(
-  //   firebase.firestore().doc("userData/" + authUser.uid),
-  //   { snapshotListenOptions: { includeMetadataChanges: true } },
-  // );
 
   return (
     <div>
@@ -67,18 +80,15 @@ export default function PortalHome() {
             alignItems: "center",
           }}></div>
 
-        <h2>Information we need:</h2>
+        <h2>Your Info</h2>
         < InfoForm data={""} />
-
-        {/* TODO: need a concept of completed/not completed. form should display current data with the option to edit */}
-
-          <div>
-            <p>
-              {error && <strong>Error: {JSON.stringify(error)}</strong>}
-              {loading && <span>Document: Loading...</span>}
-              {user && (
-                <span>
-                  Document: {user.displayName}
+        <div>
+          <p>
+            {error && <strong>Error: {JSON.stringify(error)}</strong>}
+            {loading && <span>Document: Loading...</span>}
+            {user && (
+              <span>
+                {userData &&
                   <form
                     onSubmit={(e) => {
                       handleSubmit(e);
@@ -88,33 +98,45 @@ export default function PortalHome() {
                     <input
                       name="name"
                       type="text"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
+                      value={user.displayName}
                     />
                     <br />
                     <label>Email</label>
                     <br />
-                    <input name="userEmail" type="text" />
+                    <input name="email" type="text" value={user.email} />
                     <br />
                     <label>Phone Number</label>
                     <br />
-                    <input name="pn" type="text" />
+                    <input name="pn" type="text" value={userData.phoneNumber} />
+                    <br />
+                    <label>Major / Minor</label>
+                    <br />
+                    <input name="major" type="text" value={userData.major} />
+                    <br />
+                    <label>Are you currently on campus or in Boston?</label>
+                    <br />
+                    <input name="onCampus" type="bool" value={userData.onCampus} />
+                    <br />
+                    <label>Please list any previous companies where you have worked (internship, co-op, full time)</label>
+                    <br />
+                    <input name="previousEmployers" type="text" value={userData.previousEmployers} />
+                    <br />
                     <br />
                     <input
                       className="submitButton"
                       type="submit"
-                      value="Log Chore"
+                      value="Submit"
                     />
                   </form>
-                </span>
-              )}
-            </p>
-          </div>
+                }
+              </span>
+            )}
+          </p>
+        </div>
 
-        <Link href="/portal/members">GO TO MEMBERS DIRECTORY</Link>
         <Link href="/portal/home">GO TO ORGANIZATION HOME</Link>
 
-        {user && <button onClick={logOut}>LOG OUT</button> }
+        {user && <button onClick={logOut}>LOG OUT</button>}
 
       </div>
     </div>

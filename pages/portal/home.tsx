@@ -9,7 +9,7 @@ import MembersPanel from "../../comps/Members";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { useEffect, useState } from "react";
-import db from "../../firebase/firebase";
+import db from "../../firebase/firestore";
 
 
 export default function Members() {
@@ -31,7 +31,6 @@ export default function Members() {
     data.docs.forEach((user) => {
       saveUsers.push(user.data())
     });
-    console.log(saveUsers)
     setUsers(saveUsers);
   };
   useEffect(() => {

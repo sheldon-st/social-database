@@ -30,12 +30,14 @@ export default function MembersPanel({ users }) {
         backgroundColor: "lightblue",
       }}
     >
+      <h2>Current Members</h2>
       {users &&
         users.map((user) => {
+          console.log(user)
           return (
             <div className="userDisplayRow">
               <h4 key={user}>
-                {user.displayName} -- {user.email}
+                {user.displayName} -- {user.email} -- {user.userData && user.userData.phoneNumber} -- {user.userData && user.userData.major} -- {user.userData && user.userData.previousEmployers} -- {user.userData && user.userData.onCampus}
               </h4>
             </div>
           );
